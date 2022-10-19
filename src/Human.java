@@ -1,8 +1,10 @@
+import java.time.LocalDate;
+
 public class Human {
     private int yearOfBirth;
-    private String name;
+    private final String name;
     private String town;
-    private String job;
+    private final String job;
 
     public int getYearOfBirth() {
 
@@ -21,11 +23,28 @@ public class Human {
         return town;
     }
 
+    public void setYearOfBirth(int yearOfBirth) {
+        if (yearOfBirth>=0){
+        this.yearOfBirth = yearOfBirth;}
+        else {
+            this.yearOfBirth = 0;
+        }
+    }
+
+    public void setTown(String town) {
+        if (town != null && !town.isEmpty() && !town.isBlank()){
+            this.town = town;
+        }
+        else {
+            this.town = "Информация не указана";
+        }
+    }
+
     public Human(int yearOfBirth, String name, String town, String job) {
         if (yearOfBirth<0){
             this.yearOfBirth =0;
         }else {
-            this.yearOfBirth=2022 - yearOfBirth;
+            this.yearOfBirth= LocalDate.now().getYear() - yearOfBirth;
         }
         if (name==null){
             this.name =" Информация не указана";
